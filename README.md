@@ -1,4 +1,0 @@
-# React root-config
-
-TBD
-
