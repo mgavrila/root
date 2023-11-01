@@ -3,10 +3,10 @@ const singleSpaDefaults = require("webpack-config-single-spa");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = (webpackConfigEnv, argv) => {
-  const orgName = "react-mf";
+  const orgName = "micro";
   const defaultConfig = singleSpaDefaults({
     orgName,
-    projectName: "root-config",
+    projectName: "micro-root",
     webpackConfigEnv,
     argv,
     disableHtmlGeneration: true,
