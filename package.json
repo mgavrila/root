@@ -44,5 +44,5 @@
     "single-spa": "^5.9.5",
     "single-spa-layout": "^1.6.1"
   },
-  "types": "dist/micro-root-config.d.ts"
+  "types": "dist/root-config.d.ts"
 }
