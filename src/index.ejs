@@ -11,7 +11,7 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@react-mf/root-config": "//localhost:9000/react-mf-root-config.js"
+        "@micro/micro-root": "//localhost:9000/micro-root-config.js"
       }
     }
   </script>
@@ -23,7 +23,7 @@
     <single-spa-router>
       <div class="main-content mt-16">
         <route path="people">
-          <application name="micro/dapp"></application>
+          <application name="@micro/dapp"></application>
         </route>
         <route default>
           <h1 class="flex flex-row justify-center p-16">
@@ -36,8 +36,7 @@
 </head>
 <body>
   <script>
-    System.import('@react-mf/root-config');
-    System.import('@react-mf/styleguide');
+    System.import('@micro/micro-root');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
