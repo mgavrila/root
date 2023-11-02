@@ -41,6 +41,7 @@
     "@types/jest": "^29.5.7",
     "@types/systemjs": "^6.13.4",
     "@types/webpack-env": "^1.18.3",
+    "eventemitter3": "^5.0.1",
     "single-spa": "^5.9.5",
     "single-spa-layout": "^2.2.0"
   },
