@@ -13,28 +13,7 @@ import microfrontendLayout from './microfrontend-layout.html';
 import Emitter from './emitter';
 
 const routes = constructRoutes(microfrontendLayout);
-
-const verifyRoute = (appName: string) => {
-  switch (appName) {
-    case '@amg/dapp1':
-      return '/dapp1';
-    case '@amg/dapp2':
-      return '/dapp2';
-    case '@amg/navbar':
-      return '';
-  }
-};
-
-window.addEventListener('single-spa:app-change', (evt) => {
-  const appNames = getAppNames();
-  let app = window.location.href.substring(
-    window.location.href.lastIndexOf('/') + 1
-  );
-
-  if (!appNames.includes(`@amg/${app}`)) {
-    navigateToUrl('/');
-  }
-});
+const emitter = new Emitter();
 
 const applications = constructApplications({
   routes,
@@ -45,20 +24,27 @@ const applications = constructApplications({
 
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
-applications.forEach((props) =>
+applications.forEach((props) => {
+  emitter.registerEvent(props.name);
+
+  let emitterProps: Record<string, any> = {
+    listen: (callback) => emitter.on(props.name, callback),
+    emit: (data) => emitter.emit(props.name, data)
+  };
+
+  if (props.name === '@amg/navbar') {
+    emitterProps = {
+      listenToAll: (callback) => emitter.listenToAll(callback),
+      emitToEvent: (eventName, data) => emitter.emitToEvent(eventName, data)
+    };
+  }
+
   registerApplication({
     ...props,
     customProps: {
-      eventEmitter: {
-        listenTransaction: (callback) => Emitter.on('transaction', callback),
-        listenTransactionResult: (callback) =>
-          Emitter.on('transaction-result', callback),
-        emitTransaction: (data) => Emitter.emit('transaction', data),
-        emitTransactionResult: (data) =>
-          Emitter.emit('transaction-result', data)
-      }
+      eventEmitter: emitterProps
     }
-  })
-);
+  });
+});
 layoutEngine.activate();
 start();
