@@ -17,7 +17,7 @@
     This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';"> -->
   <meta name="importmap-type" content="systemjs-importmap" />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
@@ -49,11 +49,12 @@
       "imports": {
         "react": "https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js",
         "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js",
-        "@amg/dapp1": "//localhost:8080/amg-dapp1.js",
-        "@amg/dapp2": "//localhost:8081/amg-dapp2.js",
+        "@amg/dapp1": "//localhost:8084/amg-dapp1.js",
+        "@amg/dapp2": "//localhost:8083/amg-dapp2.js",
         "@amg/navbar": "//localhost:8082/amg-navbar.js",
-        "@amg/home": "//localhost:8083/amg-home.js",
-        "@amg/root-config": "//localhost:9000/amg-root-config.js"
+        "@amg/home": "//localhost:8081/amg-home.js",
+        "@amg/root-config": "//localhost:9000/amg-root-config.js",
+        "@amg/styleguide": "//localhost:8080/amg-styleguide.js"
       }
     }
   </script>
@@ -81,6 +82,7 @@
   </noscript>
   <script>
     System.import('@amg/root-config');
+    System.import('@amg/styleguide');
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>

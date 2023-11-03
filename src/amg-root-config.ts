@@ -1,9 +1,4 @@
-import {
-  registerApplication,
-  start,
-  getAppNames,
-  navigateToUrl
-} from 'single-spa';
+import { registerApplication, start } from 'single-spa';
 import {
   constructApplications,
   constructRoutes,
@@ -46,5 +41,9 @@ applications.forEach((props) => {
     }
   });
 });
-layoutEngine.activate();
-start();
+
+System.import('@amg/styleguide').then(() => {
+  // Activate the layout engine once the styleguide CSS is loaded
+  layoutEngine.activate();
+  start();
+});
